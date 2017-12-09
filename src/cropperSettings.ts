@@ -19,6 +19,7 @@ export interface ICropperSettings {
     preserveSize: boolean;
     cropOnResize: boolean;
     compressRatio: number;
+    pixelRatio?: number;
 }
 
 export class CropperSettings implements ICropperSettings {
@@ -56,6 +57,7 @@ export class CropperSettings implements ICropperSettings {
     public preserveSize: boolean = false;
 
     public compressRatio:number = 1.0;
+    public pixelRatio:number = 1;
 
     private _rounded: boolean = false;
     private _keepAspect: boolean = true;

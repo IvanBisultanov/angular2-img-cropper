@@ -12,10 +12,10 @@ import {ICornerMarker} from './model/cornerMarker';
 export class ImageCropper extends ImageCropperModel {
 
     private crop:ImageCropper;
-    private cropperSettings:CropperSettings;
     private previousDistance:number;
 
-    constructor(cropperSettings:CropperSettings) {
+    constructor(
+        public readonly cropperSettings:CropperSettings) {
         super();
 
         let x:number = 0;
@@ -537,6 +537,10 @@ export class ImageCropper extends ImageCropperModel {
 
     public handleMove(newCropTouch:CropTouch) {
         let matched = false;
+        newCropTouch.x *= this.cropperSettings.pixelRatio || 4;
+        newCropTouch.y *= this.cropperSettings.pixelRatio || 4;
+        console.log(this.cropperSettings.pixelRatio);
+        console.log(newCropTouch);
         for (let k = 0; k < this.currentDragTouches.length; k++) {
             if (newCropTouch.id === this.currentDragTouches[k].id && this.currentDragTouches[k].dragHandle != null) {
                 let dragTouch:CropTouch = this.currentDragTouches[k];
